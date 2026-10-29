@@ -1,0 +1,12 @@
+<!-- captured: scraped source
+source url: http://www.albion.com/netiquette/corerules.html
+capture date: 2026-10-07
+source tier: 2 -->
+Title: The Core Rules of Netiquette -- Excerpted from Netiquette by Virginia Shea -- Albion.com
+
+URL Source: http://www.albion.com/netiquette/corerules.html
+
+Markdown Content:
+* * *
+###### [![Image 1](http://www.albion.com/netiquette/arrow_circle_left.gif)](http://www.albion.com/netiquette)[![Image 2](http://www.albion.com/netiquette/arrow_circle_right.gif)](http://www.albion.com/netiquette/introduction.html)# ![Image 3](http://www.albion.com/netiquette/nq_ban.gif)**THE CORE RULES OF NETIQUETTE** The Core Rules of Netiquette are excerpted from the book **_Netiquette_** by Virginia Shea. Click on each rule for elaboration. * **[Introduction](http://www.albion.com/netiquette/introduction.html)** * **[Rule 1: Remember the Human](http://www.albion.com/netiquette/rule1.html)** * **[Rule 2: Adhere to the same standards of behavior online that you follow in real life](http://www.albion.com/netiquette/rule2.html)** * **[Rule 3: Know where you are in cyberspace](http://www.albion.com/netiquette/rule3.html)** * **[Rule 4: Respect other people's time and bandwidth](http://www.albion.com/netiquette/rule4.html)** * **[Rule 5: Make yourself look good online](http://www.albion.com/netiquette/rule5.html)** * **[Rule 6: Share expert knowledge](http://www.albion.com/netiquette/rule6.html)** * **[Rule 7: Help keep flame wars under control](http://www.albion.com/netiquette/rule7.html)** * **[Rule 8: Respect other people's privacy](http://www.albion.com/netiquette/rule8.html)** * **[Rule 9: Don't abuse your power](http://www.albion.com/netiquette/rule9.html)** * **[Rule 10: Be forgiving of other people's mistakes](http://www.albion.com/netiquette/rule10.html)** * * * **[Next page](http://www.albion.com/netiquette/introduction.html)****...**[Previous page](http://www.albion.com/nqhome.html)**...**[Core Rules](http://www.albion.com/netiquette/corerules.html)**...**[Netiquette Contents](http://www.albion.com/netiquette/book/index.html) * * *
+* * * [![Image 4: Google](http://www.google.com/logos/Logo_25blk.gif)](http://www.google.com/) Web www.albion.com * * * [Albion Home](http://www.albion.com/) | [Netiquette](http://www.albion.com/netiquette/) | [Netdictionary](http://www.netdictionary.com/) | [Security](http://www.albion.com/security/) _[Copyright © 1990-2011](http://www.albion.com/rights.html)[Albion.com](http://www.albion.com/index.html) and [Seth T. Ross](http://www.sethross.com/)_
