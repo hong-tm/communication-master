@@ -42,7 +42,8 @@ def main() -> int:
     hi_n = hi_ok = 0
     wrong_total = wrong_flagged = 0
     oos_total = oos_flagged = 0
-    by_reason: dict[str, int] = {"weak-keyword": 0, "semantic-disagrees": 0, "agree": 0}
+    by_reason: dict[str, int] = {"weak-keyword": 0, "semantic-disagrees": 0,
+                                 "typo-fuzzy-match": 0, "agree": 0}
     for g in gold:
         r = rank(router, g["q"])
         kw_pick = r[0]["id"] if r else None
@@ -81,7 +82,8 @@ def main() -> int:
     print(f"out-of-scope flagged low/none: {oos_flagged}/{oos_total}"
           + (f" = {oos_flagged/oos_total:.0%}" if oos_total else ""))
     print(f"low-tier reasons: weak-keyword {by_reason['weak-keyword']}, "
-          f"semantic-disagrees {by_reason['semantic-disagrees']}")
+          f"semantic-disagrees {by_reason['semantic-disagrees']}, "
+          f"typo-fuzzy-match {by_reason['typo-fuzzy-match']}")
     return 0
 
 

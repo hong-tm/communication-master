@@ -78,9 +78,12 @@ def emit(result: dict, as_json: bool) -> None:
         print("  -> load wiki/synthesis/00-how-to-use.md and ask ONE clarifying question.")
         return
     print(f"[resolved] {result['id']}  (score {result['score']}, lang {result['lang']})")
-    print(f"  conf     {result['confidence']}"
-          + (f" (semantic check prefers {result['sem_top']})"
-             if result["reason"] == "semantic-disagrees" else ""))
+    if result["confidence"] == "low":
+        extra = f", semantic check prefers {result['sem_top']}" \
+            if result["reason"] == "semantic-disagrees" else ""
+        print(f"  conf     low ({result['reason']}{extra})")
+    else:
+        print(f"  conf     {result['confidence']}")
     if result.get("confidence") == "low":
         print("  -> fast path is unsure: prefer Layer 2 — read index.md and pick the topic by understanding;")
         print("     treat the card below as a hint, not the answer.")

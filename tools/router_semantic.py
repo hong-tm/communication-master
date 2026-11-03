@@ -97,14 +97,16 @@ def load_cards() -> dict[str, Any]:
     return json.loads(p.read_text(encoding="utf-8")).get("cards", {})
 
 
-_cache: dict[int, "SemIndex"] = {}
+_cache: dict[int, tuple[dict[str, Any], "SemIndex"]] = {}
 
 
 def for_index(index: dict[str, Any]) -> SemIndex:
     """Semantic index for a router index dict, cached by object identity, so
     ``assess(router_dict, q)`` scores semantics against the same entries it
-    ranked (not whatever a singleton happened to load first)."""
-    key = id(index)
-    if key not in _cache:
-        _cache[key] = SemIndex(index, load_cards())
-    return _cache[key]
+    ranked (not whatever a singleton happened to load first). The dict itself
+    is held in the cache so its id() can never be reused by a new dict."""
+    held, cached = _cache.get(id(index), (None, None))
+    if held is not index or cached is None:
+        cached = SemIndex(index, load_cards())
+        _cache[id(index)] = (index, cached)
+    return cached
