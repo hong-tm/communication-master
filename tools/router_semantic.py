@@ -8,7 +8,7 @@ weak or disputed keyword route is flagged low-confidence instead of silently
 returning a wrong topic. Pure stdlib, ~6 ms to build for 46 topics.
 
 Measured on the Round 8 bombardment gold set (qa/eval/bombard-adjudicated.json,
-118 adjudicated questions): keyword routing alone is ~47% correct on free-form
+118 adjudicated questions): keyword routing alone is 48.3% correct on free-form
 text; when this index disagrees with the keyword winner (or the keyword score is
 weak), the route is wrong ~2 out of 3 times — which is exactly what the
 low-confidence flag needs to catch. See qa/eval/CONFIDENCE-REPORT.md.
@@ -85,7 +85,9 @@ class SemIndex:
 
     def top(self, query: str) -> tuple[str | None, float]:
         r = self.rank(query)
-        return (r[0][0], r[0][1]) if r else (None, 0.0)
+        if not r or r[0][1] <= 0:
+            return (None, 0.0)
+        return (r[0][0], r[0][1])
 
 
 def load_cards() -> dict[str, Any]:
@@ -95,12 +97,14 @@ def load_cards() -> dict[str, Any]:
     return json.loads(p.read_text(encoding="utf-8")).get("cards", {})
 
 
-_sem_index: "SemIndex | None" = None
+_cache: dict[int, "SemIndex"] = {}
 
 
-def get_index(path: str | Path | None = None) -> SemIndex:
-    global _sem_index
-    if _sem_index is None:
-        index = json.loads((Path(path) if path else ROOT / "router-index.json").read_text(encoding="utf-8"))
-        _sem_index = SemIndex(index, load_cards())
-    return _sem_index
+def for_index(index: dict[str, Any]) -> SemIndex:
+    """Semantic index for a router index dict, cached by object identity, so
+    ``assess(router_dict, q)`` scores semantics against the same entries it
+    ranked (not whatever a singleton happened to load first)."""
+    key = id(index)
+    if key not in _cache:
+        _cache[key] = SemIndex(index, load_cards())
+    return _cache[key]

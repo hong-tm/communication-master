@@ -49,9 +49,9 @@ Round 8 诊断的两个根因：**词汇缺口**（正确主题的触发词不�
 | **high 档精度**（整体才 48.3%） | **20/31 = 65%** |
 | **错误路由被 low 拦下** | **49/60 = 82%** |
 | **out-of-scope 被 low/none 拦下** | **9/10 = 90%** |
-| low 档构成 | weak-keyword 43 · semantic-disagrees 34 |
+| low 档构成 | typo-fuzzy-match 31 · weak-keyword 21 · semantic-disagrees 25 |
 
-含义：宿主 LLM 拿到 `conf high` 时可以放心走快速通道（省 token）；拿到 `conf low` 时**别信快速通道**，读 `index.md` 按理解选页（Layer 2）——这正是 Round 8 指出的正确架构路径的可执行落地。out-of-scope 题不再被硬塞进错误主题（Round 12 安全轴的补强）。
+含义：宿主 LLM 拿到 `conf high` 时可以放心走快速通道（省 token）；拿到 `conf low` 时**别信快速通道**，读 `index.md` 按理解选页（Layer 2）——这正是 Round 8 指出的正确架构路径的可执行落地。out-of-scope 题不再被硬塞进错误主题（Round 12 安全轴的补强）。注：仅靠错别字兜底（编辑距离≤1）命中的路由一律 low（`typo-fuzzy-match`）——容错匹配可以救回候选，但不该获得高信任。
 
 阈值取舍：CONF_MIN=5 vs 8——T=8 的 high 档精度 70%（n=20）、拦错 90%，T=5 精度 65%（n=31）、拦错 82%。取 **T=5**：快速通道保留更多可用题量，拦截率损失可忽略（都是「多读一个 index.md」的代价，不是答错的代价）。
 

@@ -79,8 +79,8 @@ def emit(result: dict, as_json: bool) -> None:
         return
     print(f"[resolved] {result['id']}  (score {result['score']}, lang {result['lang']})")
     print(f"  conf     {result['confidence']}"
-          + (f" ({result['reason']}, semantic check prefers {result['sem_top']})"
-             if result["confidence"] == "low" else ""))
+          + (f" (semantic check prefers {result['sem_top']})"
+             if result["reason"] == "semantic-disagrees" else ""))
     if result.get("confidence") == "low":
         print("  -> fast path is unsure: prefer Layer 2 — read index.md and pick the topic by understanding;")
         print("     treat the card below as a hint, not the answer.")

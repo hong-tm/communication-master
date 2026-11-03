@@ -48,7 +48,7 @@ def main() -> int:
         kw_pick = r[0]["id"] if r else None
         a = assess(router, g["q"])
         pick = a["ranked"][0]["id"] if a["ranked"] else None
-        if pick != kw_pick:
+        if pick != kw_pick or [x["id"] for x in a["ranked"]] != [x["id"] for x in r]:
             drift += 1
         if kw_pick == g["gold"]:
             kw_hit += 1

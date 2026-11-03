@@ -182,8 +182,8 @@ def assess(index: dict, query: str) -> dict:
       high  keyword score >= CONF_MIN and the semantic check picks the same topic
       low   weak keyword signal, or the semantic check prefers another topic
       none  zero keyword hits (the existing intent/clarify fallback path)
-    Calibrated on the Round 8 bombardment gold set: the high tier is right ~65%
-    vs ~47% overall, and the low tier catches ~82% of wrong routes and 9/10
+    Calibrated on the Round 8 bombardment gold set: the high tier is right 65%
+    vs 48.3% overall, and the low tier catches ~82% of wrong routes and 9/10
     out-of-scope questions (see qa/eval/CONFIDENCE-REPORT.md).
     """
     ranked = rank(index, query)
@@ -191,8 +191,10 @@ def assess(index: dict, query: str) -> dict:
         return {"ranked": [], "confidence": "none", "sem_top": None,
                 "sem_score": 0.0, "reason": "no-hits"}
     top = ranked[0]
-    sem_top, sem_score = router_semantic.get_index().top(query)
-    if top["score"] < CONF_MIN:
+    sem_top, sem_score = router_semantic.for_index(index).top(query)
+    if top.get("fuzzy"):
+        confidence, reason = "low", "typo-fuzzy-match"
+    elif top["score"] < CONF_MIN:
         confidence, reason = "low", "weak-keyword"
     elif sem_top != top["id"]:
         confidence, reason = "low", "semantic-disagrees"
